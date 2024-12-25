@@ -1,0 +1,34 @@
+from custom_types import FormatedDate
+
+def print_msg(msg: str) -> None:
+	"""Function to show formated message.
+		:param msg: The message to show.
+		:type msg: string.
+		:return: None.
+	"""
+	print()
+	print("----------------------")
+	print(msg)
+	print("----------------------")
+	print()
+
+def print_options() -> None:
+	"""Function to show user's options.
+		:return: None.
+	"""
+	print("Would you like to:")
+	print(">>[M]ake a post.")
+	print(">>[C]heck account information.")
+	print(">>[D]elete account.")
+	print(">>[L]ogout")
+
+def print_updatables_fields(name, email, acc_ts: FormatedDate) -> None:
+	"""Will show the fields which user can edit.
+		:param uinfo: User information obtained from get_credentials.
+		:param acc_ts: User account creation date.
+		:type uinfo: UserData.
+		:type acc_ts: FormatedDate.
+		:return: None.
+	"""
+	print_msg(f"\t\t\tACCOUNT INFO:\n- Username: {name}.\n- User email: {email}.\n- Creation date: {acc_ts}.")
+

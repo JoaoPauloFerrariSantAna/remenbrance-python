@@ -1,0 +1,4 @@
+mypy==1.12.1
+mypy-extensions==1.0.0
+psycopg2==2.9.10
+typing_extensions==4.12.2
