@@ -1,7 +1,7 @@
 from psycopg2 import DatabaseError
-from .connections import db_connect
 from .helpers import print_err_msg
 from custom_types import PreparedQuery, PreparedTypes, QueryResult
+from .connections import db_connect
 
 def send_query(stmt: PreparedQuery, stmt_types: PreparedTypes, data: str, err_msg: str) -> None:
 	"""Will send a query prepared and then execute it.
