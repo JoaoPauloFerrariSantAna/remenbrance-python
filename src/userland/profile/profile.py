@@ -23,10 +23,10 @@ def to_profile(uid: UserId, uname: str, umail: str, passwd: str, acc_ts: Formate
 		op: str = input(">>> ")
 
 		if(op == 'M'):
-			make_reminder(uid)
+			make_reminder(user.get_user_id())
 
 		if(op == 'C'):
-			check_info(uid)
+			check_info(user)
 			continue
 
 		if(op == 'L'):
@@ -34,7 +34,7 @@ def to_profile(uid: UserId, uname: str, umail: str, passwd: str, acc_ts: Formate
 
 		if(op == 'D'):
 			print_msg("Deleting account...")
-			deactivate_acc(uid)
+			deactivate_acc(user.get_user_id())
 			return OpSuccess.ACC_DELETED_SUCCESSFULY
 
 	return OpSuccess.USER_EXIT
