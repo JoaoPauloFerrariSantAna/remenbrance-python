@@ -51,3 +51,10 @@ def create_reminder(uid: UserId, rinfo: ReminderInformation) -> None:
 	post_data = f"'{rinfo[1]}', '{rinfo[2]}', CURRENT_TIMESTAMP, {uid}"
 
 	insert(stmt, stmt_params, post_data)
+
+def create_account(name, email, passwd, timestamp) -> None:
+	stmt: str = "user_tbl(user_name, user_email, created_at, user_passwd) VALUES($1, $2, $3, $4)"
+	dtypes: str = "(VARCHAR(16), VARCHAR(32), TIMESTAMP, VARCHAR(16))"
+	user_info: str = f"'{name}', '{email}', '{timestamp}', '{passwd}'"
+
+	insert(stmt, dtypes, user_info)
