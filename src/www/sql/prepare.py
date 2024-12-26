@@ -17,10 +17,10 @@ def send_query(stmt: PreparedQuery, stmt_types: PreparedTypes, data: str, err_ms
 	with db_connect() as pg:
 		with pg.cursor() as cursor:
 			try:
-				cursor.execute(' '.join(["PREPARE query(", stmt_types, ')', "AS", stmt]))
+				cursor.execute(' '.join(["PREPARE query", stmt_types, " AS", stmt]))
 				cursor.execute(''.join(["EXECUTE query(", data, ')']))
 			except(Exception, DatabaseError) as err:
-				print_err_msg(err_msg)
+				print_err_msg(err)
 
 def send_select_query(stmt: PreparedQuery, stmt_types: PreparedTypes, data: str, err_msg: str) -> QueryResult:
 	"""Will send a 'SELECT' query prepared and then execute it.
@@ -41,7 +41,7 @@ def send_select_query(stmt: PreparedQuery, stmt_types: PreparedTypes, data: str,
 				cursor.execute(' '.join(["PREPARE select_plan(",stmt_types,") AS", stmt]))
 				cursor.execute(''.join(["EXECUTE select_plan(", data, ')']))
 				result = cursor.fetchone()
-			except(Exception, DatabaseError):
-				print_err_msg(err_msg)
-	
+			except(Exception, DatabaseError) as err:
+				print_err_msg(err)
+
 	return result
