@@ -1,8 +1,9 @@
 from userland.queries import update_user_data, set_acc_inactive, get_credentials, create_reminder
-from userland.helpers import print_updatables_fields, print_msg, get_reminders_details
+from userland.helpers import print_user_info, print_msg, get_reminders_details
 from custom_types import UserId, FormatedDate, UserData
 from locks import UpdatableFields
 from timestamps import get_acc_ts
+from objects import User
 
 def make_reminder(uid: UserId) -> None:
 	"""Will make a post.
@@ -16,7 +17,7 @@ def make_reminder(uid: UserId) -> None:
 	create_reminder(uid, rinfo)
 	print_msg("DONE: POST WAS CREATED SUCCESSFULLY!")
 
-def update_field(uid: UserId) -> None:
+def update_field(user: User) -> None:
 	"""It will update a certain field (username, email or password).
 		:param uid: The user id.
 		:return: None.
@@ -27,12 +28,14 @@ def update_field(uid: UserId) -> None:
 
 		if(field_to_update == UpdatableFields.EMAIL):
 			new_email = input("(NewEmail) >>> ")
-			update_user_data(field_to_update, new_email, uid)
+			user.set_email(new_email)
+			update_user_data(field_to_update, new_email, user.get_user_id())
 			continue
 
 		if(field_to_update == UpdatableFields.USERNAME):
 			new_uname = input("(NewUsername) >>> ")
-			update_user_data(field_to_update, new_uname, uid)
+			user.set_username(new_uname)
+			update_user_data(field_to_update, new_uname, user.get_user_id())
 			continue
 
 		break
@@ -44,24 +47,18 @@ def deactivate_acc(uid: UserId) -> None:
 	if(op == 'Y'):
 		set_acc_inactive(uid)
 
-def check_info(uid: UserId) -> None:
+def check_info(user: User) -> None:
 	"""It will show infomation belonging to the user.
 		:param uid: the user id.
 		:type uid: UserId.
 		:return None.
 	"""
-	acc_ts: FormatedDate = get_acc_ts(uid)
-	while(True):
-		# this needs to be here, since we will update stuff here
-		# this is the only way to refresh data to user without a class
-		uinfo: UserData = get_credentials(uid)
+	print_user_info(user.get_username(), user.get_email(), user.get_timestamp())
 
-		print_msg("Would you like to [u]pdate or [g]o back?")
-		print_updatables_fields(uinfo[0], uinfo[1], acc_ts)
-		op = input(">>> ")
+	print_msg("Would you like to [u]pdate or [g]o back?")
 
-		if(op == 'u'):
-			update_field(uid)
-			continue
+	print(">>> ", end='')
+	op = input()
 
-		break
+	if(op == 'u'):
+		update_field(user)
