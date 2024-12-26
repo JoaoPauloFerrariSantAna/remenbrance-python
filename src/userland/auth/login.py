@@ -1,5 +1,5 @@
 from userland.checks import is_over_limit, is_acc_blocked, does_acc_exists
-from userland.helpers import get_user_info, print_msg
+from userland.helpers import get_uid, get_user_info, print_msg
 from userland.profile import to_profile
 from custom_types import OpStatus, UserData
 from operation_statuses import OpErrors, OpSuccess
@@ -21,6 +21,5 @@ def login_acc() -> OpStatus:
 		print_msg("Oh! Your name or email is too long to create an account!.")
 		return OpErrors.MAX_LENGTH_REACHED
 
-	to_profile(user_data[0], user_data[1])
+	to_profile(get_uid(user_data[0], user_data[1]), user_data[0], user_data[1], user_data[2], user_data[3])
 	return OpSuccess.ACC_OK
-

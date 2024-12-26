@@ -29,7 +29,7 @@ def reg_acc() -> OpStatus:
 		return OpErrors.ACC_ALREADY_EXISTS
 
 	print_msg(f"Registering user...\nAccount created at {get_curr_ts()}")
-	insert(stmt, dtypes, user_info)
-	to_profile(user[0], user[1])
+	create_account(user_data[0], user_data[1], user_data[2], user_data[3])
+	to_profile(get_uid(user_data[0], user_data[1]), user_data[0], user_data[1], user_data[2], user_data[3])
 
 	return OpSuccess.ACC_OK
