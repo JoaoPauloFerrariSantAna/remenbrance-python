@@ -17,8 +17,9 @@ def login_acc() -> OpStatus:
 		return OpErrors.ACC_IS_BLOCKED
 
 	if(is_over_limit(user_data[0], FieldLimits.NAME_MAX_LENGTH) or
-		is_over_limit(user_data[1], FieldLimits.EMAIL_MAX_LENGTH)):
-		print_msg("Oh! Your name or email is too long to create an account!.")
+		is_over_limit(user_data[1], FieldLimits.EMAIL_MAX_LENGTH) or
+		is_over_limit(user_data[2], FieldLimits.PASSWD_MAX_LENGTH)):
+		print_msg("Oh! Your name, password or email is too long to create an account!.")
 		return OpErrors.MAX_LENGTH_REACHED
 
 	to_profile(get_uid(user_data[0], user_data[1]), user_data[0], user_data[1], user_data[2], user_data[3])
