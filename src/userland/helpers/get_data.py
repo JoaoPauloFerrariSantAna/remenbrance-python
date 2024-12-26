@@ -23,11 +23,20 @@ def get_user_info() -> UserData:
 		:return: Will return a list containing username and user email.
 		:rtype: UserData.
 	"""
-	name = input("Account name: ")
-	email = input("Email: ")
-	return (name, email, get_curr_ts())
+	print("Account name.")
+	print(">>> ", end='')
+	name = input()
 
-# TODO: add return type
+	print("Account email.")
+	print(">>> ", end='')
+	email = input()
+
+	print("Account password.")
+	print(">>> ", end='')
+	passwd = input()
+
+	return (name, email, passwd, get_curr_ts())
+
 def get_reminders_details() -> ReminderInformation:
 	rdata = get_curr_ts()
 	rtitle = input("Reminder's title: ")
