@@ -1,6 +1,7 @@
-from custom_types import OpStatus, UserId
+from custom_types import OpStatus, UserId, FormatedDate
 from userland.actions import check_info, deactivate_acc, make_reminder
 from userland.helpers import get_uid, print_msg, print_options
+from objects import User
 from operation_statuses import OpSuccess
 from timestamps import get_curr_day
 
@@ -13,7 +14,7 @@ def to_profile(uid: UserId, uname: str, umail: str, passwd: str, acc_ts: Formate
 		:return: A status code that says if the user exited or deleted account.
 		:rtype: OpStatus.
 	"""
-	uid: UserId = get_uid(uname, umail)
+	user: User = User(uid, uname, umail, passwd, acc_ts)
 	print_msg(f"Hello {uname}! Today is {get_curr_day()}.")
 
 	# add a do-while loop here, later on
