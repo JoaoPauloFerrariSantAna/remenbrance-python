@@ -4,7 +4,7 @@ from userland.helpers import get_uid, print_msg, print_options
 from operation_statuses import OpSuccess
 from timestamps import get_curr_day
 
-def to_profile(uname: str, umail: str) -> OpStatus:
+def to_profile(uid: UserId, uname: str, umail: str, passwd: str, acc_ts: FormatedDate) -> OpStatus:
 	"""Will run userspace.
 		:param uname: Username typed in login or reg_user.
 		:param umail: User email typed in login or reg_user.
