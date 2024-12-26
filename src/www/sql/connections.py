@@ -1,4 +1,5 @@
 from psycopg2 import connect, OperationalError
+from .helpers import print_err_msg
 from custom_types import EnvInfo
 
 def get_db_env() -> EnvInfo:
@@ -25,11 +26,6 @@ def db_connect():
 					port='{db_env[4]}'
 				""")
 	except(Exception, OperationalError) as err:
-		print()
-		print("----------------------")
-		print("Could not connect to DB.")
-		print(err)
-		print("----------------------")
-		print()
+		print_err_msg(err)
 
 	return conn
