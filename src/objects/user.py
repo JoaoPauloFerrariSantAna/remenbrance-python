@@ -1,8 +1,9 @@
-from custom_types import UserId
+from custom_types import UserId, FormatedDate
+
 # meh, I could use a struct from ctype
 # but i'll me trying to do a MVC approach to this :v
 class User():
-	def __init__(user_id: UserId, username: str, email: str, password: str):
+	def __init__(self, user_id: UserId, username: str, email: str, password: str, account_timestamp: FormatedDate):
 		self.__user_id = user_id
 		self.__username = username
 		self.__email = email
