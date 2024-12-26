@@ -15,7 +15,7 @@ def get_credentials(uid: UserId) -> UserData:
 	credentials: UserData = select(stmt, stmt_type, str(uid))
 	return credentials
 
-def update_user_data(field_name: str, updated_info: str, uid: UserId) -> None:
+def update_user_data(field_name: str, new_data: str, uid: UserId) -> None:
 	"""Will update field data with param `new_data`.
 		:param field: Field to update.
 		:param updated_info: Changed name, email or password.
@@ -26,7 +26,8 @@ def update_user_data(field_name: str, updated_info: str, uid: UserId) -> None:
 		:return: None.
 	"""
 	stmt = f"user_tbl SET user_{field_name} = $1 WHERE user_id = $2"
-	stmt_params = "VARCHAR(32), INTEGER"
+	stmt_params = "(VARCHAR(32), INTEGER)"
+	updated_info = f"'{new_data}', '{uid}'"
 
 	update(stmt, stmt_params, updated_info)
 
