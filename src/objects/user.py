@@ -8,9 +8,22 @@ class User():
 		self.__username = username
 		self.__email = email
 		self.__password = password
+		self.__timestamp = account_timestamp
 
 	def get_user_id(self) -> UserId:
 		return self.__user_id
+
+	def get_username(self) -> None:
+		return self.__username
+
+	def get_email(self) -> str:
+		return self.__email
+
+	def get_password(self) -> str:
+		return self.__password
+
+	def get_timestamp(self) -> FormatedDate:
+		return self.__timestamp
 
 	def set_username(self, new_username: str) -> None:
 		self.__username = new_username
@@ -20,4 +33,3 @@ class User():
 
 	def set_password(self, new_password: str) -> None:
 		self.__password = new_password
-	
