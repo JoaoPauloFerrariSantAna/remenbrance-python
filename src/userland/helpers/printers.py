@@ -22,7 +22,7 @@ def print_options() -> None:
 	print(">>[D]elete account.")
 	print(">>[L]ogout")
 
-def print_updatables_fields(name, email, acc_ts: FormatedDate) -> None:
+def print_user_info(name, email, acc_ts: FormatedDate) -> None:
 	"""Will show the fields which user can edit.
 		:param uinfo: User information obtained from get_credentials.
 		:param acc_ts: User account creation date.
@@ -31,4 +31,3 @@ def print_updatables_fields(name, email, acc_ts: FormatedDate) -> None:
 		:return: None.
 	"""
 	print_msg(f"\t\t\tACCOUNT INFO:\n- Username: {name}.\n- User email: {email}.\n- Creation date: {acc_ts}.")
-
