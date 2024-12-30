@@ -2,19 +2,6 @@ from custom_types import UserId, UserData, ReminderInformation
 from locks import UpdatableFields
 from www.sql import update, call_proc, select, insert
 
-def get_credentials(uid: UserId) -> UserData:
-	"""Will obtain the credentials stored in the DB.
-		:param uid: The user id obtained earlier.
-		:type uid: UserId.
-		:return: The credentials (name, email, pass, etc).
-		:rtype: UserData.
-	"""
-	stmt = "user_name, user_email FROM user_tbl WHERE user_id = $1"
-	stmt_type = "INTEGER"
-
-	credentials: UserData = select(stmt, stmt_type, str(uid))
-	return credentials
-
 def update_user_data(field_name: str, new_data: str, uid: UserId) -> None:
 	"""Will update field data with param `new_data`.
 		:param field: Field to update.

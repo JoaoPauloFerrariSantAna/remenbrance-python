@@ -1,4 +1,4 @@
-from userland.queries import update_user_data, set_acc_inactive, get_credentials, create_reminder
+from userland.queries import update_user_data, set_acc_inactive, create_reminder
 from userland.helpers import print_user_info, print_msg, get_reminders_details
 from custom_types import UserId, FormatedDate, UserData
 from locks import UpdatableFields
