@@ -24,7 +24,11 @@ def set_acc_inactive(uid: UserId) -> None:
 		:type uid: UserId.
 		:return: None.
 	"""
-	call_proc(f"lock_acc({uid})")
+	stmt = "user_tbl SET is_active = 'false' WHERE user_id = $1"
+	stmt_params = "(INTEGER)"
+	user_to_deactivate = f"'{uid}'"
+
+	update(stmt, stmt_params, user_to_deactivate)
 
 def create_reminder(uid: UserId, rinfo: ReminderInformation) -> None:
 	"""Will create a reminder.
