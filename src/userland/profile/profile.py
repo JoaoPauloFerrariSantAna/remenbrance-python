@@ -3,7 +3,7 @@ from userland.actions import check_info, deactivate_acc, make_reminder
 from userland.helpers import get_uid, print_msg, print_options
 from objects import User
 from operation_statuses import OpSuccess
-from timestamps import get_curr_day
+from timestamps import get_curr_date
 
 def to_profile(uid: UserId, uname: str, umail: str, passwd: str, acc_ts: FormatedDate) -> OpStatus:
 	"""Will run userspace.
@@ -15,7 +15,7 @@ def to_profile(uid: UserId, uname: str, umail: str, passwd: str, acc_ts: Formate
 		:rtype: OpStatus.
 	"""
 	user: User = User(uid, uname, umail, passwd, acc_ts)
-	print_msg(f"Hello {uname}! Today is {get_curr_day()}.")
+	print_msg("Hello {0}! Today is {1}.".format(uname, get_curr_date("%a (%A)")))
 
 	# add a do-while loop here, later on
 	while(True):

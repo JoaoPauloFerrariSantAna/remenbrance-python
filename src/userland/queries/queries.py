@@ -1,6 +1,7 @@
 from custom_types import UserId, UserData, ReminderInformation
+from timestamps import get_curr_date
 from locks import UpdatableFields
-from www.sql import update, call_proc, select, insert
+from www.sql import update, select, insert
 
 def update_user_data(field_name: str, new_data: str, uid: UserId) -> None:
 	"""Will update field data with param `new_data`.
@@ -24,7 +25,8 @@ def set_acc_inactive(uid: UserId) -> None:
 		:type uid: UserId.
 		:return: None.
 	"""
-	stmt = "user_tbl SET is_active = 'false' WHERE user_id = $1"
+	current_date = get_curr_date("%Y-%m-%d %H:%M:%S.%f")
+	stmt = f"user_tbl SET is_active = 'false', deleted_at = '{current_date}' WHERE user_id = $1"
 	stmt_params = "(INTEGER)"
 	user_to_deactivate = f"'{uid}'"
 

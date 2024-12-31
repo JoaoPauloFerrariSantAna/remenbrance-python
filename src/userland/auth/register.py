@@ -5,7 +5,7 @@ from userland.queries import create_account
 from custom_types import OpStatus, UserData
 from operation_statuses import OpErrors, OpSuccess
 from locks import FieldLimits
-from timestamps import get_curr_ts
+from timestamps import get_curr_date
 from www.sql import insert
 
 def reg_acc() -> OpStatus:
@@ -26,7 +26,7 @@ def reg_acc() -> OpStatus:
 		print("There is already someone with that username.")
 		return OpErrors.ACC_ALREADY_EXISTS
 
-	print_msg(f"Registering user...\nAccount created at {get_curr_ts()}")
+	print_msg(f"Registering user...\nAccount created at {0} UTC".format(get_curr_date("%d/%m/%Y %H:%M")))
 	create_account(user_data[0], user_data[1], user_data[2], user_data[3])
 	to_profile(get_uid(user_data[0], user_data[1]), user_data[0], user_data[1], user_data[2], user_data[3])
 

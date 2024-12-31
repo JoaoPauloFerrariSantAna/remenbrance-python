@@ -1,4 +1,4 @@
-from timestamps import get_curr_ts
+from timestamps import get_curr_date
 from custom_types import UserId, UserData, ReminderInformation
 from www.sql import select
 
@@ -35,10 +35,10 @@ def get_user_info() -> UserData:
 	print(">>> ", end='')
 	passwd = input()
 
-	return (name, email, passwd, get_curr_ts())
+	return (name, email, passwd, get_curr_date("%Y-%m-%d %H:%M:%S.%f"))
 
 def get_reminders_details() -> ReminderInformation:
-	rdata = get_curr_ts()
+	rdata = get_curr_date("%Y-%m-%d %H:%M:%S.%f")
 	rtitle = input("Reminder's title: ")
 	rdesc = input("Reminder's description: ")
 	return (rdata, rtitle, rdesc)
