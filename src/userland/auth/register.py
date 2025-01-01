@@ -14,7 +14,7 @@ def reg_acc() -> OpStatus:
 		or there was errors in the way.
 		:rtype: OpStatus.
 	"""
-	user: UserData = get_user_info()
+	user_data: UserData = get_user_info()
 
 	if(is_over_limit(user_data[0], FieldLimits.NAME_MAX_LENGTH) or
 		is_over_limit(user_data[1], FieldLimits.EMAIL_MAX_LENGTH) or
