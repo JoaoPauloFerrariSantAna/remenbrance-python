@@ -7,12 +7,12 @@ from timestamps import get_curr_date
 
 def to_profile(uid: UserId, uname: str, umail: str, passwd: str, acc_ts: FormatedDate) -> OpStatus:
 	"""Will run userspace.
-		:param uname: Username typed in login or reg_user.
-		:param umail: User email typed in login or reg_user.
-		:type uname: string.
-		:type umail: string.
-		:return: A status code that says if the user exited or deleted account.
-		:rtype: OpStatus.
+	:param uname: Username typed in login or reg_user.
+	:param umail: User email typed in login or reg_user.
+	:type uname: string.
+	:type umail: string.
+	:return: A status code that says if the user exited or deleted account.
+	:rtype: OpStatus.
 	"""
 	user: User = User(uid, uname, umail, passwd, acc_ts)
 	print_msg("Hello {0}! Today is {1}.".format(uname, get_curr_date("%a (%A)")))

@@ -8,7 +8,7 @@ def is_acc_blocked(uname: str, umail: str) -> bool:
 		:param umail: User email.
 		:type uname: string.
 		:type umail: string.
-		:return: True if `is_active` is `f`, False if the contrary.
+		:return: An boolean to represent if the account is blocked or not.
 		:rtype: bool.
 	"""
 	stmt: str = "is_active FROM user_tbl WHERE user_name = $1 AND user_email = $2"
@@ -26,8 +26,7 @@ def does_acc_exists(uname: str, umail: str) -> bool:
 		:param umail: User email.
 		:type uname: string.
 		:type umail: string.
-		:return: True if the `count` returns 1, False if `count` finds another
-				account with the same username and email.
+		:return: An boolean to represent if the account already exits.
 		:rtype: bool.
 	"""
 	stmt: str = "count(*) FROM user_tbl WHERE user_name = $1 AND user_email = $2"

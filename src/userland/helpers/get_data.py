@@ -3,13 +3,13 @@ from custom_types import UserId, UserData, ReminderInformation
 from www.sql import select
 
 def get_uid(uname: str, umail: str) -> UserId:
-	"""Function to get the user id from DB.
-		:param uname: Username.
-		:param umail: user email.
-		:type uname: string.
-		:type umail: string.
-		:return: The user id that the user with `uname` and `umail` has.
-		:rtype: UserId.
+	"""Function to get user id.
+	:param uname: Username.
+	:param umail: user email.
+	:type uname: string.
+	:type umail: string.
+	:return: The user id.
+	:rtype: UserId.
 	"""
 	stmt: str = "user_id FROM user_tbl WHERE user_name = $1 AND user_email = $2"
 	stmt_types: str = "VARCHAR(16), VARCHAR(32)"
@@ -20,8 +20,8 @@ def get_uid(uname: str, umail: str) -> UserId:
 
 def get_user_info() -> UserData:
 	"""Will get user information.
-		:return: Will return a list containing username and user email.
-		:rtype: UserData.
+	:return: Returns a list containing username and user email.
+	:rtype: UserData.
 	"""
 	print("Account name.")
 	print(">>> ", end='')
@@ -38,6 +38,10 @@ def get_user_info() -> UserData:
 	return (name, email, passwd, get_curr_date("%Y-%m-%d %H:%M:%S.%f"))
 
 def get_reminders_details() -> ReminderInformation:
+	"""Will get the reminder details.
+	:return: Returns a list of the reminder details.
+	:rtype: ReminderInformation.
+	"""
 	rdata = get_curr_date("%Y-%m-%d %H:%M:%S.%f")
 	rtitle = input("Reminder's title: ")
 	rdesc = input("Reminder's description: ")
