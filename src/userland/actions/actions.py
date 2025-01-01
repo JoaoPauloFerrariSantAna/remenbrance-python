@@ -6,7 +6,7 @@ from timestamps import get_acc_ts
 from objects import User
 
 def make_reminder(uid: UserId) -> None:
-	"""Will make a post.
+	"""Will create a reminder.
 		:param uid: The user id.
 		:type uid: UserId.
 		:return: None.
@@ -18,8 +18,9 @@ def make_reminder(uid: UserId) -> None:
 	print_msg("DONE: POST WAS CREATED SUCCESSFULLY!")
 
 def update_field(user: User) -> None:
-	"""It will update a certain field (username, email or password).
-		:param uid: The user id.
+	"""It will update user information (username, email or password).
+		:param user: The user to update the information.
+		:type user: User.
 		:return: None.
 	"""
 	while(True):
@@ -41,7 +42,12 @@ def update_field(user: User) -> None:
 		break
 
 def deactivate_acc(uid: UserId) -> None:
-	print_msg("Are you sure? (Y/N)")
+	"""It will deactivate the user account.
+	:param uid: The user id to use to delete the account.
+	:type uid: UserId.
+	:return: None.
+	"""
+	print_msg("Are you sure? (y/n)")
 	op = input("(DeleteAccount)>>> ")
 
 	if(op == 'Y'):
@@ -49,8 +55,7 @@ def deactivate_acc(uid: UserId) -> None:
 
 def check_info(user: User) -> None:
 	"""It will show infomation belonging to the user.
-		:param uid: the user id.
-		:type uid: UserId.
+		:param user: The user to show information.
 		:return None.
 	"""
 	print_user_info(user.get_username(), user.get_email(), user.get_timestamp())

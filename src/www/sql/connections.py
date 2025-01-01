@@ -13,7 +13,9 @@ def get_db_env() -> EnvInfo:
 	return (HOST, DB_NAME, USR, PASSWD, PORT)
 
 def db_connect():
-	"""Will connect to the DB."""
+	"""Will connect to the DB.
+	:returns: A database connection.
+	"""
 	db_env: EnvInfo = get_db_env()
 	conn = None
 
