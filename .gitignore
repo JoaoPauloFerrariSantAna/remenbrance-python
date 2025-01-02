@@ -1,0 +1,10 @@
+# ignores cache files
+__pycache__
+
+# ignores venv stuff
+venv/
+lib/
+lib64
+bin/
+pyvenv.cfg
+
