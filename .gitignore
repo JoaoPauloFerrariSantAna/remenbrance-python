@@ -1,10 +1,5 @@
-# ignores cache files
-__pycache__
-
-# ignores venv stuff
-venv/
-lib/
+bin
+lib
 lib64
-bin/
+__pycache__
 pyvenv.cfg
-
