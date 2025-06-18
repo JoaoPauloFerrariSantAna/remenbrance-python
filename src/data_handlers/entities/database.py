@@ -1,12 +1,12 @@
 import os
 # from psycopg2 import connect, OperationalError, DatabaseError
-from helpers.printers import print_err_msg
+# from dotenv import load_dotenv
+from helpers import print_err_msg
 from custom_types import PreparedQuery, PreparedTypes, QueryResult
-from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
-class DatabaseHandler():
+class Database():
 	def __init__(self) -> None:
 		self.__databaseName = os.getenv("DB_NAME")
 		self.__databaseUser = os.getenv("DB_USR")
