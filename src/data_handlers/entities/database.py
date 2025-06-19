@@ -1,10 +1,10 @@
 import os
-# from psycopg2 import connect, OperationalError, DatabaseError
-# from dotenv import load_dotenv
+from psycopg2 import connect, OperationalError, DatabaseError
+from dotenv import load_dotenv
 from helpers import print_err_msg
-from custom_types import PreparedQuery, PreparedTypes, QueryResult
+from custom_types import PreparedQuery, PreparedTypes, QueryResult, InsertData
 
-# load_dotenv()
+load_dotenv()
 
 class Database():
 	def __init__(self) -> None:
@@ -32,12 +32,9 @@ class Database():
 
 		return connection
 	
-	def __disconnect(self, connection) -> None:
-		connection.close();
-
 	# NOTE: this and __sendSelectQuery are the same
 	# i could add a flag here and this would eliminate a method 
-	def __sendQuery(self, stmt: PreparedQuery, stmt_types: PreparedTypes, data: str) -> None:
+	def __sendQuery(self, stmt: PreparedQuery, stmt_types: PreparedTypes, data: str) -> InsertData:
 		"""Will execute a non prepared select statement.
 			:param stmt: The prepared statement query.
 			:param stmt_types: Types of the actual data inside of the DB.
@@ -50,17 +47,23 @@ class Database():
 		"""
 		connection = self.__connect();
 		cursor = connection.cursor()
+		returning_value = None
 
 		try:
 			cursor.execute(' '.join(["PREPARE query", stmt_types, " AS", stmt]))
 			cursor.execute(''.join(["EXECUTE query(", data, ')']))
+			returning_value = cursor.fetchone()
 			cursor.execute("DEALLOCATE query")
 			cursor.close()
+			connection.commit()
 		except(Exception, DatabaseError) as err:
 			print_err_msg("Something went wrong while tryinging to execute error")
+			print(err)
 
-		self.__disconnect(connection)
+		connection.close()
 		connection = None
+
+		return returning_value[0]
 
 	def __sendSelectQuery(self, stmt: PreparedQuery, stmt_types: PreparedTypes, data: str) -> QueryResult:
 		"""Will execute a prepared select statement.
@@ -86,7 +89,7 @@ class Database():
 		except(Exception, DatabaseError) as err:
 			print_err_msg("Something went wrong with query!")
 
-		self.__disconnect(connection)
+		connection.close()
 		connection = None
 		return result
 
@@ -97,7 +100,9 @@ class Database():
 			:return: None.
 		"""
 		query = ' '.join(["INSERT INTO", stmt])
-		self.__sendQuery(query, query_types, data)
+		returning_value = self.__sendQuery(query, query_types, data)
+
+		return returning_value
 
 	def update(self, stmt: str, query_types: str, data: str) -> None:
 		"""Will make an update query.
