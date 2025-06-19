@@ -1,5 +1,4 @@
-from operation_statuses import OpErrors
-from userland.auth import reg_acc, login_acc
+from userland.form import reg_acc, login_acc
 from userland.checks import check_op_exit_code
 
 def init_app() -> None:
@@ -14,11 +13,7 @@ def init_app() -> None:
 		op = input()
 
 		if(op == 'c'):
-			reg_exit_code = reg_acc()
-			check_op_exit_code(reg_exit_code, OpErrors.ACC_ALREADY_EXISTS,
-								"This account already exits")
+			reg_acc()
 
-		if(op == 'l'):
-			login_exit_code = login_acc()
-			check_op_exit_code(login_exit_code, OpErrors.ACC_IS_BLOCKED,
-								"Your account is blocked")
+#		if(op == 'l'):
+#			login_acc()
