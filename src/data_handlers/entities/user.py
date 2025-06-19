@@ -1,5 +1,9 @@
 from custom_types import UserId, FormatedDate
-from data_handlers.validators import UsernameValidator, EmailValidator, PasswordValidator
+from data_handlers.validators import(
+	UsernameValidator,
+	EmailValidator,
+	PasswordValidator
+)
 
 # https://www.youtube.com/watch?v=YGNH71KPIes
 
@@ -8,9 +12,9 @@ from data_handlers.validators import UsernameValidator, EmailValidator, Password
 class User():
 	def __init__(self, user_id: UserId, username: str, email: str, password: str, account_timestamp: FormatedDate):
 		self.__user_id = user_id
-		self.__usernameValidator = UsernameValidator(username)
-		self.__emailValidator = EmailValidator(email)
-		self.__passwordValidator = PasswordValidator(password)
+		self.__username = UsernameValidator(username)
+		self.__email = EmailValidator(email)
+		self.__password = PasswordValidator(password)
 		self.__timestamp = account_timestamp
 
 	def get_user_id(self) -> UserId:

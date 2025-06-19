@@ -1,9 +1,39 @@
-from userland.queries import update_user_data, set_acc_inactive, create_reminder
-from userland.helpers import print_user_info, print_msg, get_reminders_details
+from userland.queries import (
+	create_account,
+	update_user_data,
+	set_acc_inactive,
+	create_reminder,
+	get_reminders_details,
+	get_uid,
+	get_acc_ts
+)
+from data_handlers.entities import Database, User
+from timestamps import  get_curr_date
+from helpers import print_user_info, print_msg
 from custom_types import UserId, FormatedDate, UserData
 from locks import UpdatableFields
-from timestamps import get_acc_ts
-from objects import User
+
+def create_user() -> User:
+	"""Will get user information.
+	:return: Returns a list containing username and user email.
+	:rtype: UserData.
+	"""
+	print("Account name.")
+	print(">>> ", end='')
+	name = input()
+	print("Account email.")
+	print(">>> ", end='')
+	email = input()
+	print("Account password.")
+	print(">>> ", end='')
+	passwd = input()
+
+	print_msg(f"Registering user...\nAccount created at {0} UTC".format(get_curr_date("%d/%m/%Y %H:%M")))
+	acc_ts = get_curr_date()
+	uid = create_account(name, email, passwd, acc_ts)
+	user = User(uid, name, email, passwd, acc_ts)
+
+	return user
 
 def make_reminder(uid: UserId) -> None:
 	"""Will create a reminder.
@@ -58,8 +88,8 @@ def check_info(user: User) -> None:
 		:param user: The user to show information.
 		:return None.
 	"""
+	# i could just use a __repr__ here, but i want to do stuff the hard way :v
 	print_user_info(user.get_username(), user.get_email(), user.get_timestamp())
-
 	print_msg("Would you like to [u]pdate or [g]o back?")
 
 	print(">>> ", end='')

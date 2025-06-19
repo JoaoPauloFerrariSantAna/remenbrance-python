@@ -1,7 +1,7 @@
 from datetime import datetime, timezone, timedelta
 from custom_types import FormatedDate
 
-def get_curr_date(fmt: str) -> FormatedDate:
+def get_curr_date(fmt: str = "%Y-%m-%d %H:%M:%S.%f") -> FormatedDate:
 	"""Will get the current date in UTC format.
 	:param fmt: The date format to use.
 	:returns: A formated datetime.

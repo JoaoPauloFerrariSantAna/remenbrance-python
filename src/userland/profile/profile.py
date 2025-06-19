@@ -1,7 +1,8 @@
 from custom_types import OpStatus, UserId, FormatedDate
 from userland.actions import check_info, deactivate_acc, make_reminder
-from userland.helpers import get_uid, print_msg, print_options
-from objects import User
+from userland.queries import get_uid
+from data_handlers.entities import User
+from helpers import print_msg, print_options
 from operation_statuses import OpSuccess
 from timestamps import get_curr_date
 
