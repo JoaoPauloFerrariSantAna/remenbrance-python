@@ -5,6 +5,8 @@ from data_handlers.validators import(
 	PasswordValidator
 )
 
+type UserData = str
+
 # https://www.youtube.com/watch?v=YGNH71KPIes
 
 # meh, I could use a struct from ctype
@@ -20,14 +22,14 @@ class User():
 	def get_user_id(self) -> UserId:
 		return self.__user_id
 
-	def get_username(self) -> None:
-		return self.__usernameValidator.get_username()
+	def get_username(self) -> UserData:
+		return self.__username.get_username()
 
-	def get_email(self) -> str:
-		return self.__emailValidator.get_email()
+	def get_email(self) -> UserData:
+		return self.__email.get_email()
 
-	def get_password(self) -> str:
-		return self.__passwordValidator.get_password()
+	def get_password(self) -> UserData:
+		return self.__password.get_password()
 
 	# why would we want to set the account timestamp...?
 	def get_timestamp(self) -> FormatedDate:

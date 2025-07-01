@@ -93,7 +93,7 @@ class Database():
 		connection = None
 		return result
 
-	def insert(self, stmt: str, query_types: str, data: str) -> None:
+	def insert(self, stmt: str, query_types: str, data: str) -> InsertData:
 		"""Will make an insert query.
 			:param data: Information to send to DB with INSERT.
 			:type data: string.

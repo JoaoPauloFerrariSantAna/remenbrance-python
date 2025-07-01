@@ -2,7 +2,7 @@ class Reminder():
 	def __init__(self, title: str, description: str, creation_data):
 		self.__title = title
 		self.__description = description
-		self.__creation_data = creation_date
+		self.__creation_date = creation_date
 	
 	def set_title(self, reminder_title) -> None:
 		self.__title = reminder_title

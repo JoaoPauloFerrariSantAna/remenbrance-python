@@ -4,8 +4,6 @@ from userland.queries import (
 	set_acc_inactive,
 	create_reminder,
 	get_reminders_details,
-	get_uid,
-	get_acc_ts
 )
 from data_handlers.entities import Database, User
 from timestamps import  get_curr_date
