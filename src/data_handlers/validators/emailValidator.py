@@ -1,4 +1,3 @@
-from userland.checks import is_over_limit
 from locks import FieldLimits
 
 class EmailValidator():
@@ -8,7 +7,7 @@ class EmailValidator():
 	
 	def __validate_email_length(self, email: str) -> None:
 		try:
-			if(is_over_limit(email, FieldLimits.EMAIL_MAX_LENGTH)):
+			if(email > FieldLimits.EMAIL_MAX_LENGTH):
 				raise RuntimeError(f"GIVEN EMAIL EXCEEDS FIELD LIMIT ({FieldLimits.EMAIL_MAX_LENGTH} chars)")
 		except RuntimeError as err:
 			print("An error occurred:",err)

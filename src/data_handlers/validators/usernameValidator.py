@@ -1,4 +1,3 @@
-from userland.checks import is_over_limit
 from locks import FieldLimits
 
 class UsernameValidator():
@@ -8,7 +7,7 @@ class UsernameValidator():
 
 	def __validate_username_length(self, username) -> None:
 		try:
-			if(is_over_limit(username, FieldLimits.NAME_MAX_LENGTH)):
+			if(username > FieldLimits.NAME_MAX_LENGTH):
 				raise RuntimeError(f"INPUTED NAME EXCEEDS FIELD LIMIT ({FieldLimits.NAME_MAX_LENGTH} chars)")
 		except RuntimeError as err:
 			print("An error occurred:",err)

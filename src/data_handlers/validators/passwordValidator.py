@@ -1,4 +1,3 @@
-from userland.checks import is_over_limit
 from locks import FieldLimits
 
 class PasswordValidator():
@@ -8,7 +7,7 @@ class PasswordValidator():
 	
 	def __validate_password_length(self, password) -> None:
 		try:
-			if(is_over_limit(password, FieldLimits.PASSWD_MAX_LENGTH)):
+			if(password > FieldLimits.PASSWD_MAX_LENGTH):
 				raise RuntimeError(f"INPUTED PAssword EXCEEDS FIELD LIMIT ({FieldLimits.PASSWD_MAX_LENGTH} chars)")
 		except RuntimeError as err:
 			print("An error occurred:",err)
