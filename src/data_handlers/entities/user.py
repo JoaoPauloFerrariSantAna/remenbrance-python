@@ -1,5 +1,5 @@
 from custom_types import UserId, FormatedDate
-from data_handlers.validators import(
+from ..validators import(
 	UsernameValidator,
 	EmailValidator,
 	PasswordValidator
