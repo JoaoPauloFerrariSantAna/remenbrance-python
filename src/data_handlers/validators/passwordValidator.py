@@ -1,16 +1,19 @@
+from custom_data.exceptions import FieldLengthException
 from locks import FieldLimits
 
 class PasswordValidator():
 	def __init__(self, password: str) -> None:
-		self.__validate_password_length(password)
+		self.__validate_password_length(len(password))
 		self.__password = password
 	
-	def __validate_password_length(self, password) -> None:
+	def __validate_password_length(self, password: int) -> None:
+		limit = FieldLimits.PASSWD_MAX_LENGTH
+
 		try:
-			if(password > FieldLimits.PASSWD_MAX_LENGTH):
-				raise RuntimeError(f"INPUTED PAssword EXCEEDS FIELD LIMIT ({FieldLimits.PASSWD_MAX_LENGTH} chars)")
-		except RuntimeError as err:
-			print("An error occurred:",err)
+			if(password > limit):
+				raise FieldLengthException
+		except FieldLengthException as err:
+			raise
 	
 	def get_password(self) -> str:
 		return self.__password
