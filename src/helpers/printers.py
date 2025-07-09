@@ -1,5 +1,5 @@
 from sys import stderr
-from custom_types import FormatedDate
+from custom_data.types import FormatedDate
 
 def print_msg(msg: str) -> None:
 	"""Function to show formated message.

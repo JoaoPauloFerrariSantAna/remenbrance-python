@@ -1,21 +1,22 @@
-from userland.queries import (
+from userland.queries import(
 	create_account,
 	update_user_data,
 	set_acc_inactive,
 	create_reminder,
 	get_reminders_details,
 )
+from data_handlers.validators import(
+	EmailValidator,
+	PasswordValidator,
+	UsernameValidator
+)
 from data_handlers.entities import Database, User
 from timestamps import  get_curr_date
 from helpers import print_user_info, print_msg
-from custom_types import UserId, FormatedDate, UserData
+from custom_data.type import UserId, FormatedDate, UserData
 from locks import UpdatableFields
 
-def create_user() -> User:
-	"""Will get user information.
-	:return: Returns a list containing username and user email.
-	:rtype: UserData.
-	"""
+def get_user_info() -> UserData:
 	print("Account name.")
 	print(">>> ", end='')
 	name = input()
@@ -26,10 +27,29 @@ def create_user() -> User:
 	print(">>> ", end='')
 	passwd = input()
 
-	print_msg(f"Registering user...\nAccount created at {0} UTC".format(get_curr_date("%d/%m/%Y %H:%M")))
 	acc_ts = get_curr_date()
-	uid = create_account(name, email, passwd, acc_ts)
-	user = User(uid, name, email, passwd, acc_ts)
+
+	# i really don't mind this being mutable
+	return [name, email, passwd, acc_ts]
+
+def create_user() -> User:
+	"""Will get user information.
+	:return: Returns a list containing username and user email.
+	:rtype: User instance.
+	"""
+	uinfo = get_user_info()
+	vname: UsernameValidator = UsernameValidator(uinfo[0])
+	vpass: PasswordValidator = PasswordValidator(uinfo[2])
+	vmail: EmailValidator = EmailValidator(uinfo[1])
+
+	print_msg(f"Registering user...\nAccount created at {0} UTC".format(get_curr_date("%d/%m/%Y %H:%M")))
+	uid = create_account(
+		vname.get_username(),
+		email.get_email(),
+		vpass.get_password(),
+		uinfo[3]
+	)
+	user = User(vname, vmail, vpass, uinfo[3])
 
 	return user
 

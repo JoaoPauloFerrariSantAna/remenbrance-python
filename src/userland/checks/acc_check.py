@@ -1,6 +1,8 @@
-# from objects import Database
-from custom_types import QueryResult
+from data_handlers.entities import Database
+from custom_data.types import QueryResult
 from .operation_check import check_for_none
+
+# NOTE: from what i've done, this whole file can go to some validator
 
 def is_acc_blocked(uname: str, umail: str) -> bool:
 	"""Function that checks if account is blocked.

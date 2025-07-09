@@ -1,5 +1,4 @@
 from userland.form import reg_acc, login_acc
-from userland.checks import check_op_exit_code
 
 def init_app() -> None:
 	"""Will run main app.

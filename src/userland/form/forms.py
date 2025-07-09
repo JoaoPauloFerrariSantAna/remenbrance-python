@@ -3,9 +3,10 @@ from userland.profile import to_profile
 from userland.actions import create_user
 from userland.checks import is_acc_blocked, does_acc_exists
 
-
 def reg_acc() -> None:
-	"""Will try to register user."""
+	"""Will try to register user.
+		:rtype: None.
+	"""
 	print("Work on validation")
 	print("like... to see if the account already exists")
 	exit(1)
@@ -18,9 +19,7 @@ def reg_acc() -> None:
 
 def login_acc() -> None:
 	"""Will try to login into account.
-		:return: Status code that will indicate if login in was OK
-		or there was errors in the way.
-		:rtype: OpStatus.
+		:rtype: None.
 	"""
 	print("Work on validating the id next")
 	print("To see if the account was already blocked")

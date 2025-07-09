@@ -2,7 +2,12 @@ import os
 from psycopg2 import connect, OperationalError, DatabaseError
 from dotenv import load_dotenv
 from helpers import print_err_msg
-from custom_types import PreparedQuery, PreparedTypes, QueryResult, InsertData
+from custom_data.types import(
+	PreparedQuery,
+	PreparedTypes,
+	QueryResult,
+	InsertData
+)
 
 load_dotenv()
 

@@ -1,5 +1,5 @@
 from datetime import datetime, timezone, timedelta
-from custom_types import FormatedDate
+from custom_data.types import FormatedDate
 
 def get_curr_date(fmt: str = "%Y-%m-%d %H:%M:%S.%f") -> FormatedDate:
 	"""Will get the current date in UTC format.

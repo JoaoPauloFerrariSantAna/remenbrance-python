@@ -1,4 +1,4 @@
-from custom_types import UserId, FormatedDate
+from custom_data.types import UserId, FormatedDate
 from ..validators import(
 	UsernameValidator,
 	EmailValidator,
