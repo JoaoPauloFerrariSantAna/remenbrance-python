@@ -13,7 +13,7 @@ from data_handlers.validators import(
 from data_handlers.entities import Database, User
 from timestamps import  get_curr_date
 from helpers import print_user_info, print_msg
-from custom_data.type import UserId, FormatedDate, UserData
+from custom_data.types import UserId, FormatedDate, UserData
 from locks import UpdatableFields
 
 def get_user_info() -> UserData:

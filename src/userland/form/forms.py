@@ -1,4 +1,3 @@
-from helpers import print_msg
 from userland.profile import to_profile
 from userland.actions import create_user
 from userland.checks import is_acc_blocked, does_acc_exists
