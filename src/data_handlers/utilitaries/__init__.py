@@ -1,2 +1,2 @@
-from .time_utilitary import TimeUtilitary
-from .printer_utilitary import PrinterUtilitary
+from .timeUtilitary import TimeUtilitary
+from .printerUtilitary import PrinterUtilitary
