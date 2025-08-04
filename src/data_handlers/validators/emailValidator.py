@@ -9,11 +9,8 @@ class EmailValidator():
 	def __validate_email_length(self, length: int) -> None:
 		limit = FieldLimits.EMAIL_MAX_LENGTH
 
-		try:
-			if(length > limit):
-				raise FieldLengthException
-		except FieldLengthException as err:
-			raise
+		if(length > limit):
+			raise FieldLengthException
 	
 	def get_email(self) -> str:
 		return self.__email

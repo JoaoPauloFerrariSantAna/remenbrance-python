@@ -9,11 +9,8 @@ class UsernameValidator():
 	def __validate_username_length(self, username) -> None:
 		limit = FieldLimits.NAME_MAX_LENGTH
 
-		try:
-			if(username > limit):
-				raise FieldLengthException
-		except FieldLengthException as err:
-			raise
+		if(username > limit):
+			raise FieldLengthException
 
 	def get_username(self) -> str:
 		return self.__username
