@@ -1,7 +1,7 @@
 import os
 from psycopg2 import connect, OperationalError, DatabaseError
 from dotenv import load_dotenv
-from helpers import print_err_msg
+from data_handlers.utilitaries import PrinterUtilitary
 from custom_data.types import(
 	PreparedQuery,
 	PreparedTypes,
@@ -33,7 +33,7 @@ class Database():
 				)
 			)
 		except(Exception,  OperationalError) as err:
-			print_err_msg("Something went wrong while connecting to DB")
+			PrinterUtilitary.print_err_msg("Something went wrong while connecting to DB")
 
 		return connection
 	
@@ -62,7 +62,7 @@ class Database():
 			cursor.close()
 			connection.commit()
 		except(Exception, DatabaseError) as err:
-			print_err_msg("Something went wrong while tryinging to execute error")
+			PrinterUtilitary.print_err_msg("Something went wrong while tryinging to execute error")
 			print(err)
 
 		connection.close()
@@ -92,7 +92,7 @@ class Database():
 			cursor.execute("DEALLOCATE select_plan")
 			cursor.close()
 		except(Exception, DatabaseError) as err:
-			print_err_msg("Something went wrong with query!")
+			PrinterUtilitary.print_err_msg("Something went wrong with query!")
 
 		connection.close()
 		connection = None

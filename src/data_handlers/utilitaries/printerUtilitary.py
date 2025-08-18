@@ -7,8 +7,7 @@ class PrinterUtilitary():
 		"""Function to show formated message.
 		:param msg: The message to show.
 		:type msg: string.
-		:return: None.
-		"""
+		:return: None."""
 		print()
 		print("----------------------")
 		print(msg)
@@ -20,8 +19,7 @@ class PrinterUtilitary():
 		"""Function to show formated error message.
 		:param msg: The message to show.
 		:type msg: string.
-		:return: None.
-		"""
+		:return: None."""
 		stderr.write("----------------------\n")
 		stderr.write(msg)
 		stderr.write("----------------------\n")
@@ -30,8 +28,7 @@ class PrinterUtilitary():
 	@staticmethod
 	def print_options() -> None:
 		"""Function to show what the user can do.
-		:return: None.
-		"""
+		:return: None."""
 		print("Would you like to:")
 		print(">>[M]ake a post.")
 		print(">>[C]heck account information.")
@@ -45,6 +42,5 @@ class PrinterUtilitary():
 		:param acc_ts: User account creation date.
 		:type uinfo: UserData.
 		:type acc_ts: FormatedDate.
-		:return: None.
-		"""
+		:return: None."""
 		print_msg(f"\t\t\tACCOUNT INFO:\n- Username: {name}.\n- User email: {email}.\n- Creation date: {acc_ts}.")
