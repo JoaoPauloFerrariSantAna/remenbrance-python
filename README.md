@@ -1,7 +1,6 @@
-# Psycopg2 test
+# Remembrance (python ver.)
 
-This repository has the purpose of testing how to connect Python
-with Postgresql.
+A simple (yet unfinished) terminal application that stores your todos in reminders.
 
 ## Tools
 
